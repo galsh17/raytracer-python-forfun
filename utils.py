@@ -54,6 +54,11 @@ def translate(triangles, translation):
     return triangles
 
 
+def magnify(triangles, factor):
+    [tri.update_points(tri.points * factor) for tri in triangles]
+    return triangles
+
+
 def get_rot_mat(rotation):
     def Rx(theta):
         return np.array([[1, 0, 0],
@@ -77,4 +82,5 @@ def get_rot_mat(rotation):
 
 def rotate(triangles, rotation):
     rotation_matrix = get_rot_mat(rotation)
-    return [tri.update_points(tri.points @ rotation_matrix) for tri in triangles]
+    [tri.update_points(tri.points @ rotation_matrix) for tri in triangles]
+    return triangles
